@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block Title %} List Edition {% endblock %}
+    
+{% block content %}
+
+    <div class="container">
+        {% if object_list %}
+        <div class="row py-5">
+        {% for item in post_list %}
+                <div class="card col-3 mx-2 my-2" style="width: 18rem;">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/91lwhFD6joL.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text">{{item.published_at}}</p>
+                    <p class="card-text">{{item.author}}</p>
+
+                    <div class="row">
+                    <a href="{% url 'update_post' item.id %}" class="btn btn-primary mx-3">Editar</a>
+                    <a href="{% url 'delete_post' item.id %}" class="btn btn-danger">Eliminar</a>
+
+                    </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+        {% else %}
+                <p>
+                    No posts found.
+                </p>
+        {%endif%}
+    </div>
+
+
+{% endblock %}
